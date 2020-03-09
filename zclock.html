@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery.js"></script>
+    <style>
+    div{
+        width:30vw;
+        height:30vw;
+        margin-left:5.3vw;
+        margin-top:2vw;
+        border: 5px solid transparent;
+      border-radius: 50%;
+position:absolute;
+    }
+    img{
+        width:40vw;
+        position:absolute;
+    }
+   
+    divt:nth-of-type(1){
+        position: absolute;
+        width:14vw;
+        height:1vw;
+        border-radius:9px;
+        margin-top:14.2vw;
+        margin-left:1vw;
+        background: green;
+   transform: rotateZ(90deg);
+   transform-origin: 95% 50%;
+   z-index: 500;
+
+    }
+    divt:nth-of-type(2){
+        position: absolute;
+        width:13vw;
+        height:1vw;
+        border-radius:9px;
+        margin-top:14.8vw;
+        margin-left: 2vw;
+        background: blue;
+   transform: rotateZ(90deg);
+   transform-origin: 95% 50%;
+z-index: 499;
+    }
+    divt:nth-of-type(3){
+        position: absolute;
+        width:10vw;
+        height:1vw;
+        border-radius:9px;
+        margin-top:14.5vw;
+        margin-left: 5vw;
+        background: brown;
+   transform: rotateZ(90deg);
+   transform-origin: 95% 50%;
+z-index:498;
+    }
+    divt:nth-of-type(4){
+        position: absolute;
+        width:4vw;
+        height:4vw;
+       background: red;
+       border-radius: 50%;
+       margin-top:13vw;
+       margin-left: 12.5vw;
+z-index: 501;
+    }
+   
+    </style>
+</head>
+<body>
+    <img src="clock.png" alt="">
+    <div>
+        <divt></divt>
+        <divt></divt>
+        <divt></divt>
+        <divt></divt>
+
+    </div>
+    <script>
+    function getSeconds(){
+    var sec= new Date().getSeconds().toString();
+    var sec1=parseInt(sec);
+    return sec1*6;
+}
+function getMinutes(){
+    var sec= new Date().getMinutes().toString();
+    var sec1=parseInt(sec);
+    return sec1*6;
+}
+function getHours(){
+    var sec= new Date().getHours().toString();
+    var sec1=parseInt(sec);
+    if(sec1 > 12){
+        sec1=sec1-12;
+       
+    }
+    return sec1*30;
+}
+</script>
+    <script>
+        $(document).ready(function(){
+            var secondss=$("divt:nth-of-type(1)");
+var minutess=$("divt:nth-of-type(2)");
+var hourss=$("divt:nth-of-type(3)");
+var counter=parseInt(new Date().getSeconds());
+var counter1=0;
+var secrot=90+getSeconds();
+var minrot=90+getMinutes();
+var hourot=90+getHours();
+secondss.css("transform","rotateZ("+secrot+"deg)");
+minutess.css("transform","rotateZ("+minrot+"deg)");
+hourss.css("transform","rotateZ("+hourot+"deg)");
+    setInterval(function(){
+counter++;
+counter1++;
+secrot+=6;
+if(counter==60){
+    minrot+=6;
+    counter=0;
+}
+if(counter1==3600){
+    hourot+=30;
+    counter1=0;
+}
+secondss.css("transform","rotateZ("+secrot+"deg)");
+minutess.css("transform","rotateZ("+minrot+"deg)");
+hourss.css("transform","rotateZ("+hourot+"deg)");
+    },1000);
+        });
+
+    </script>
+</body>
+</html>
